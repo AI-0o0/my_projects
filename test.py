@@ -119,9 +119,9 @@ class NeuralNetwork:
                 print("Epoch %d loss: %.3f" % (epoch, loss))
 def What_is_the_Gender_of(gusse):
     if (round(gusse) == 1) :
-        return(f"{gusse * 100}% sure that she's a Female")
+        return(f"I'm {gusse * 100}% sure that you are a Female")
     else:
-        return(f"{(1- gusse) * 100}% sure he's a male")
+        return(f"I'm {(1- gusse) * 100}% sure you are a male")
 
 data = np.array([
     [-69.4, -5.9],
@@ -136,6 +136,11 @@ data = np.array([
     [40.6, 6.1]
 ])
 
+avg_weight = 152
+avg_height = 67
+
+kg_to_pound = 2.20462
+cm_to_inchs = 0.393701 
 
 # 1 = Female, 0 = Male
 all_y_trues = np.array([
@@ -144,13 +149,19 @@ all_y_trues = np.array([
 ])
 
 network = NeuralNetwork()
-network.train(data, all_y_trues , 0.1 , 4000)
+network.train(data, all_y_trues , 0.01, 500)
 
-emily = np.array([128-152, 63-67])
-frank = np.array([25.6,  -1.9]) 
+weight = (float(input("pleas enter you weighth in Kg: ")) * kg_to_pound) - avg_weight
+height = (float(input("pleas enter you heighth in cm: ")) * cm_to_inchs) - avg_height
 
-print("Emily:", What_is_the_Gender_of(network.feedforward(emily)))
-print("Frank:", What_is_the_Gender_of(network.feedforward(frank)))
+user = np.array([weight, height])
+
+print(What_is_the_Gender_of(network.feedforward(user)))
+# emily = np.array([128-152, 63-67])
+# frank = np.array([25.6,  -1.9]) 
+
+# print("Emily:", What_is_the_Gender_of(network.feedforward(emily)))
+# print("Frank:", What_is_the_Gender_of(network.feedforward(frank)))
 
 # print("Emily: %.3f" % network.feedforward(emily))
 # print("Frank: %.3f" % network.feedforward(frank))
