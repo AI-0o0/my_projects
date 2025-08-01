@@ -133,7 +133,9 @@ data = np.array([
     [7.6, 2.1],
     [18.6, 3.1],
     [29.6, 4.1],
-    [40.6, 6.1]
+    [40.6, 6.1],
+    [33, 3],
+    [-9, -5]
 ])
 
 avg_weight = 152
@@ -145,11 +147,11 @@ cm_to_inchs = 0.393701
 # 1 = Female, 0 = Male
 all_y_trues = np.array([
     1, 1, 1, 1, 1,   
-    0, 0, 0, 0, 0  
+    0, 0, 0, 0, 0 , 0 , 0
 ])
 
 network = NeuralNetwork()
-network.train(data, all_y_trues , 0.01, 500)
+network.train(data, all_y_trues , 0.1, 1000)
 
 weight = (float(input("pleas enter you weighth in Kg: ")) * kg_to_pound) - avg_weight
 height = (float(input("pleas enter you heighth in cm: ")) * cm_to_inchs) - avg_height
@@ -166,7 +168,7 @@ print(What_is_the_Gender_of(network.feedforward(user)))
 # print("Emily: %.3f" % network.feedforward(emily))
 # print("Frank: %.3f" % network.feedforward(frank))
 
-# this weights are 98%
+# this weights are 98% accaurate 
 # W1: 0.37628523319812246, W2: 1.1852598965957664, W3: 0.3374869997443513, W4: 0.1393183523371986, W5: -6.365756521920572, W6: -2.8601363996979208 , 
 # B1: 3.144094787329415, B2: 2.239148579767488, B3: 4.13255016719388
 # print(f"W1: {network.w1}, W2: {network.w2}, W3: {network.w3}, W4: {network.w4}, W5: {network.w5}, W6: {network.w6} , B1: {network.b1}, B2: {network.b2}, B3: {network.b3}" )
