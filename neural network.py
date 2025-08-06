@@ -151,7 +151,7 @@ all_y_trues = np.array([
 ])
 
 network = NeuralNetwork()
-network.train(data, all_y_trues , 0.1, 1000)
+network.train(data, all_y_trues , 0.1, 1000000)
 
 weight = (float(input("pleas enter you weighth in Kg: ")) * kg_to_pound) - avg_weight
 height = (float(input("pleas enter you heighth in cm: ")) * cm_to_inchs) - avg_height
